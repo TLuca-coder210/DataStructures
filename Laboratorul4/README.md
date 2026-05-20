@@ -16,4 +16,4 @@
 #### Built upon the in-order traversal property where a valid BST must yield a strictly increasing sequence. By keeping a pointer to the `prev` visited node, I scanned for anomalies where `root->val <= prev->val`. If it is the first violation found, `prev` is marked as `firstNode` and `root` as `secondNode` (handles adjacent swaps). If a second violation occurs later, `secondNode` is updated to the new `root` (handles non-adjacent swaps). After the full traversal, the values of `firstNode` and `secondNode` are swapped to restore the tree.
 ### Complexity:
 #### Time: $\mathcal{O}(n)$ as the algorithm performs a single, complete in-order traversal visiting each node exactly once.
-#### Space: Space: $\mathcal{O}(h)$ auxiliary space for the implicit recursion stack, where h is the height of the tree ($\mathcal{O}(n)$ in the worst case).
+#### Space: $\mathcal{O}(h)$ auxiliary space for the implicit recursion stack, where h is the height of the tree ($\mathcal{O}(n)$ in the worst case).

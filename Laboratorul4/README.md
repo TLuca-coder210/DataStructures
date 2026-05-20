@@ -17,3 +17,9 @@
 ### Complexity:
 #### Time: $\mathcal{O}(n)$ as the algorithm performs a single, complete in-order traversal visiting each node exactly once.
 #### Space: $\mathcal{O}(h)$ auxiliary space for the implicit recursion stack, where h is the height of the tree ($\mathcal{O}(n)$ in the worst case).
+## Problem 4 - Serialize and Deserialize BST
+### Aproach:
+#### Exploited the unique structural properties of a BST to optimize data storage. For serialization, the tree is flattened into a space-separated string using a pre-order traversal (Root → Left → Right), completely avoiding the need to store `null` markers for empty child slots. For deserialization, the string is parsed back into an array of integers. The tree is then reconstructed in a single pass by recursively enforcing strict valid value ranges `(mini, maxi)` for each subtree path, allowing the algorithm to correctly place nodes based solely on their keys.
+### Complexity:
+#### Time: $\mathcal{O}(n)$ for both operations. `serialize` visits every node once, and `deserialize` processes each number in the array exactly once due to the bounding range checks.
+#### Space: $\mathcal{O}(n)$ memory to store the output string and intermediate parsed vector, alongside $\mathcal{O}(h)$ stack space for the recursive calls, where `h` is the tree height.

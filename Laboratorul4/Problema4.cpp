@@ -17,7 +17,7 @@ private:
         traverse(root->left, s);
         traverse(root->right, s);
     }
-    TreeNode* insert(vector<int>&nums, int index,  long long mini, long long maxi){
+    TreeNode* insert(vector<int>&nums, int &index,  long long mini, long long maxi){
         if(index >= nums.size()){
             return nullptr;
         }
@@ -49,7 +49,8 @@ public:
                 s += c;
             }
         }
-        return insert(numbers, 0, LONG_MIN, LONG_MAX);
+        int index = 0;
+        return insert(numbers, index, LONG_MIN, LONG_MAX);
     }
 };
 

@@ -23,3 +23,9 @@
 ### Complexity:
 #### Time: $\mathcal{O}(n)$ for both operations. `serialize` visits every node once, and `deserialize` processes each number in the array exactly once due to the bounding range checks.
 #### Space: $\mathcal{O}(n)$ memory to store the output string and intermediate parsed vector, alongside $\mathcal{O}(h)$ stack space for the recursive calls, where `h` is the tree height.
+## Problem 5 - Custom Pointer-Based Heap
+### Aproach:
+#### Implemented a non-standard, tree-based heap structure using dynamic pointers where each `HeapNode` maintains a collection of subtrees via a `std::vector` of child pointers. The minimum element is tracked directly at the `root` node for immediate access. For `insert`, the tree adjusts depending on whether the new value or the current root is smaller. For `pop`, the root is deleted, and its immediate children are merged through a linear multi-way comparison loop to determine the next global minimum.
+### Complexity:
+#### Time: $\mathcal{O}(1)$ for top. $\mathcal{O}(n \ log \ n)$ average time for `insert` and `pop`. However, because the subtrees are not combined using an explicit two-pass pairwise merging strategy, the layout can degrade, leading to an absolute worst-case time of $\mathcal{O}(n)$ for sequential operations.
+#### Space: $\mathcal{O}(n)$ total space to allocate and hold the heap nodes dynamically in memory.

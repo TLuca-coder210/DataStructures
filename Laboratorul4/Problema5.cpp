@@ -40,16 +40,32 @@ public:
             root = nullptr;
             return;
         }
-        int index = children.size() - 1;
-        HeapNode* new_root = children[index];
-        for(int i = index - 1; index >= 0; i--){
-            HeapNode* node = children[i];
-            if(new_root->key < node->key){
-                new_root->children.push_back(node);
+        vector<HeapNode*> pairs;
+        for(int i = 0; i < children.size(); i += 2){
+            if(i + 1 < children.size()){
+                if(children[i]->key < children[i + 1]->key){
+                    children[i]->children.push_back(children[i + 1]);
+                    pairs.push_back(children[i]);
+                }
+                else{
+                    children[i + 1]->children.push_back(children[i]);
+                    pairs.push_back(children[i + 1]);
+                }
             }
             else{
+                pairs.push_back(children[i);
+            }
+        }
+        int index = pairs.size() - 1;
+        HeapNode* new_root = pairs[index];
+        for(int i = index - 1; i >= 0; i--){
+            HeapNode* node = pairs[i];
+            if(new_root->key < node->key){
                 node->children.push_back(new_root);
                 new_root = node;
+            }
+            else{
+                new_root->children.push_back(node);
             }
         }
         root = new_root;
